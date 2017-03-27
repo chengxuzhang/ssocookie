@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>cookie</title>
+	<script src="jquery.min.js" type="text/javascript"></script>
+</head>
+<body>
+
+<button id="login">登录</button>
+      <button id="logout">退出</button>
+	
+
+	<script>
+
+		$.ajax({
+                  type: "GET",
+            url: "http://static.saonan.com/cookie.php",
+            // beforeSend:function(XMLHttpRequest){
+            //    console.log(this);
+            //          // this;   //调用本次ajax请求时传递的options参数
+            // },
+            // dataType: 'jsonp',
+                  xhrFields: {
+                withCredentials: true
+            },
+            // crossDomain: true,
+            })
+
+            $.ajax({
+                  type: "GET",
+            url: "http://static.saonan.com/get.php",
+            dataType:'json',
+            // beforeSend:function(XMLHttpRequest){
+            //    console.log(this);
+            //          // this;   //调用本次ajax请求时传递的options参数
+            // },
+            // dataType: 'jsonp',
+                  xhrFields: {
+                withCredentials: true
+            },
+            // crossDomain: true,
+            success:function(data){
+                  if(data.status == 200){
+                        alert(data.data);
+                  }else{
+                        alert('你还没有登录');
+                  }
+            }
+            })
+
+            $("#login").click(function(){
+            $.ajax({
+                  type: "GET",
+            url: "http://static.saonan.com/login.php",
+            data:{id:1,username:'骚男',web:'亚索'},
+            // beforeSend:function(XMLHttpRequest){
+            //    console.log(this);
+            //          // this;   //调用本次ajax请求时传递的options参数
+            // },
+            // dataType: 'jsonp',
+                  xhrFields: {
+                withCredentials: true
+            },
+            // crossDomain: true,
+            })
+      })
+
+      $("#logout").click(function(){
+            $.ajax({
+                  type: "GET",
+            url: "http://static.saonan.com/logout.php",
+            // beforeSend:function(XMLHttpRequest){
+            //    console.log(this);
+            //          // this;   //调用本次ajax请求时传递的options参数
+            // },
+            // dataType: 'jsonp',
+                  xhrFields: {
+                withCredentials: true
+            },
+            // crossDomain: true,
+            })
+      })
+	</script>
+	
+	测试cookie页面
+</body>
+</html>
